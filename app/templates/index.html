@@ -5,14 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Scraper</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function addUrlField() {
+            const container = document.getElementById('url-fields');
+            const inputGroup = document.createElement('div');
+            inputGroup.className = 'input-group';
+            inputGroup.innerHTML = `
+                <input type="text" name="urls" required>
+                <button type="button" class="remove-btn" onclick="removeUrlField(this)">Remove</button>
+            `;
+            container.appendChild(inputGroup);
+        }
+
+        function removeUrlField(button) {
+            const container = document.getElementById('url-fields');
+            container.removeChild(button.parentNode);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Web Scraper</h1>
         <form method="post">
-            <label for="url">Enter URL:</label>
-            <input type="text" id="url" name="url" required>
-            <button type="submit">Go</button>
+            <div id="url-fields">
+                <div class="input-group">
+                    <input type="text" name="urls" required>
+                    <button type="button" class="remove-btn" onclick="removeUrlField(this)">Remove</button>
+                </div>
+            </div>
+            <button type="button" class="add-btn" onclick="addUrlField()">Add URL</button>
+            <button type="submit">Activate Hacking Powers</button>
         </form>
     </div>
 </body>
